@@ -28,10 +28,17 @@ export default defineConfig({
       algorithm: 'gzip', // 压缩算法
       ext: '.gz', // ⽂件类型
     }),
-    
+
   ],
   resolve: {
-    '@': resolve('src')
+    alias: { '@': resolve('src') }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/style/_variables.scss";@import "@/style/mixin.scss";`,
+      },
+    },
   },
   build: {
     rollupOptions: {

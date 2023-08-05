@@ -14,6 +14,10 @@ function chageList() {
   list.value[1] = { a: 9 };
 }
 
+function changeList2() {
+  list.value[1] = { a: 15 };
+}
+
 function changeObj() {
   if (!obj.value.b) {
     obj.value.b = 1;
@@ -29,6 +33,7 @@ function changeObj() {
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
     <button type="button" @click="chageList">改变数组</button>
+    <button type="button" @click="changeList2">改变数组2</button>
     <button type="button" @click="changeObj">改变对象</button>
     <p>
       Edit

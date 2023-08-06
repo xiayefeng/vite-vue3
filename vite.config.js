@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import eslint from 'vite-plugin-eslint'
 import path from 'node:path'
 import viteCompression from 'vite-plugin-compression'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -15,6 +16,11 @@ export default defineConfig({
     vue(),
     vueJsx(),
     eslint(),
+    createSvgIconsPlugin({
+      iconDirs: [resolve('src/assets/svg')],
+      // symbolId: 'icon-[dir]-[name]'
+      symbolId: '[dir]-[name]'
+    }),
     visualizer({
       emitFile: false,
       file: "stats.html", //分析图生成的文件名

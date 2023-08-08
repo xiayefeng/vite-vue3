@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory, createWebHistory, useRouter, useRou
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
+    {path: '/', component: () => import('@/views/HomePage.vue')}
     //...
   ],
 })
@@ -14,7 +15,7 @@ router.beforeEach((to, from) => {
   console.log(from)
   // ...
   // 返回 false 以取消导航
-  return false
+  // return true
 })
 
 export const $router = useRouter()

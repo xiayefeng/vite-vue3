@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from "vue";
+import { ref } from "vue"
+
 const list = ref([])
 
 function changeList () {
@@ -10,7 +11,7 @@ function changeList () {
   <main class="main-wrap">
     <button @click="changeList">改变list</button>
     <ul class="box">
-      <li class="box-item" v-for="item in list" :key="item.a"></li>
+      <li class="box-item" v-for="item in list" :key="item.a">{{ item.a }}</li>
     </ul>
   </main>
 </template>

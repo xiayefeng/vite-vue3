@@ -51,7 +51,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           'vue-vendor': ['vue', 'vue-router', 'pinia'],
-          'echarts': ['echarts'],
+          // 'echarts': ['echarts'],
           'lodash': ['lodash'],
         },
       },

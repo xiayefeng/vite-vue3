@@ -68,5 +68,21 @@ export default defineConfig({
         comments: true,
       },
     },
+  },
+  server: {
+    // hmr: { overlay: false }, // 为 false 可以禁用服务器错误遮罩层
+    port: 9988,
+    open: false,
+    // https: true,
+    proxy: {
+      '/api': {
+        // target: 'http://192.168.56.1:3000',
+        // target: 'http://localhost:8080',
+        target: 'https://sjfx.top:8080',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '/api')
+      },
+    },
   }
 })

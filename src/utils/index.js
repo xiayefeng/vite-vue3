@@ -28,3 +28,7 @@ export function copyText (txt) {
     document.body.removeChild(textarea)
   }
 }
+
+export function isPromise (val) {
+  return val && typeof val.then === 'function' && typeof val.catch === 'function'
+}

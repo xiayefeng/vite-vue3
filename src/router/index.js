@@ -10,9 +10,9 @@ const router = createRouter({
 
 console.log(createWebHistory)
 
-router.beforeEach((to, from) => {
-  console.log(to)
-  console.log(from)
+router.beforeEach(() => {
+  // console.log(to)
+  // console.log(from)
   // ...
   // 返回 false 以取消导航
   // return true

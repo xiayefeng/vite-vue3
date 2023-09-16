@@ -23,7 +23,7 @@ export function copyText (txt) {
     textarea.select()
     const result = document.execCommand('copy')
     if (result) {
-      console.log('复制成功')
+      console.log('copy success')
     }
     document.body.removeChild(textarea)
   }

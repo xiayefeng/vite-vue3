@@ -8,7 +8,7 @@ const router = createRouter({
   ],
 })
 
-console.log(createWebHistory)
+console.log(createWebHistory.name)
 
 router.beforeEach(() => {
   // console.log(to)

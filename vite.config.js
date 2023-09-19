@@ -6,6 +6,7 @@ import eslint from 'vite-plugin-eslint'
 import path from 'node:path'
 import viteCompression from 'vite-plugin-compression'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+// import importElementPlus from 'vite-plugin-element-plus'
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -21,6 +22,7 @@ export default defineConfig({
       // symbolId: 'icon-[dir]-[name]'
       symbolId: '[dir]-[name]'
     }),
+    // importElementPlus(),
     visualizer({
       emitFile: false,
       file: "stats.html", //分析图生成的文件名
@@ -56,7 +58,7 @@ export default defineConfig({
         },
       },
     },
-    terserOptions: {
+   /*  terserOptions: {
       compress: {
         // warnings: false,
         drop_console: true, // 打包时删除console
@@ -67,7 +69,7 @@ export default defineConfig({
         // 去掉注释内容
         comments: true,
       },
-    },
+    }, */
   },
   server: {
     // hmr: { overlay: false }, // 为 false 可以禁用服务器错误遮罩层

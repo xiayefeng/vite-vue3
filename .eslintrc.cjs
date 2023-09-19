@@ -1,3 +1,5 @@
+// require('@rushstack/eslint-patch/modern-module-resolution')
+
 module.exports = {
     "env": {
         "browser": true,
@@ -6,7 +8,9 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:vue/vue3-essential"
+        "plugin:vue/vue3-essential",
+        // '@vue/eslint-config-typescript',
+        // '@vue/eslint-config-prettier/skip-formatting'
     ],
     "overrides": [
         {

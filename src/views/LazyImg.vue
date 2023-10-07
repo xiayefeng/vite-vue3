@@ -9,7 +9,6 @@ useInView(imgRef);
 </script>
 
 <template>
-  <h4>公众号：萌萌哒草头将军</h4>
   <div v-for="(_, idx) in new Array(200).fill(11)" :key="idx" style="width: 200px height: 200px;">
     <img ref="imgRef" style="height: 100%" src="https://via.placeholder.com/200"
       :data-src="`https://picsum.photos/200/${180 + idx}`" alt="b" />

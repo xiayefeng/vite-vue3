@@ -3,7 +3,8 @@ import { createRouter, createWebHashHistory, createWebHistory, useRouter, useRou
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    {path: '/', component: () => import('@/views/HomePage.vue')}
+    { path: '/', component: () => import('@/views/HomePage.vue') },
+    { path: '/img', component: () => import('@/views/LazyImg.vue') }
     //...
   ],
 })

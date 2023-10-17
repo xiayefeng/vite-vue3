@@ -32,3 +32,22 @@ export function copyText (txt) {
 export function isPromise (val) {
   return val && typeof val.then === 'function' && typeof val.catch === 'function'
 }
+
+export const renderData = (data, total, page, pageCount, showData) => {
+  // base case -- total 为 0 时没有数据要渲染 不再递归调用
+  if (total <= 0) return
+
+  // total 比 pageCount 少时只渲染 total 条数据
+  pageCount = Math.min(pageCount, total)
+
+  requestAnimationFrame(() => {
+    const startIdx = page * pageCount
+    const endIdx = startIdx + pageCount
+    const dataList = data.slice(startIdx, endIdx)
+    showData.push(dataList)
+    
+    renderData(data, total - pageCount, page + 1, pageCount, showData)
+  })
+}
+
+// renderData(res.data, res.data.length, 0, 200, showData)

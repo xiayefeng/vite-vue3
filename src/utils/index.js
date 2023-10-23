@@ -44,10 +44,14 @@ export const renderData = (data, total, page, pageCount, showData) => {
     const startIdx = page * pageCount
     const endIdx = startIdx + pageCount
     const dataList = data.slice(startIdx, endIdx)
-    showData.push(dataList)
+    showData.push(...dataList)
     
     renderData(data, total - pageCount, page + 1, pageCount, showData)
   })
+}
+
+export function compose(...funcs) {
+  return funcs.reduce((a, b) => (...args) => a(b(...args)));
 }
 
 // renderData(res.data, res.data.length, 0, 200, showData)

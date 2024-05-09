@@ -1,3 +1,5 @@
+import asyncPool from 'tiny-async-pool'
+
 export function copyText (txt) {
   if (txt == null || txt === '') {
     return
@@ -45,13 +47,30 @@ export const renderData = (data, total, page, pageCount, showData) => {
     const endIdx = startIdx + pageCount
     const dataList = data.slice(startIdx, endIdx)
     showData.push(...dataList)
-    
+
     renderData(data, total - pageCount, page + 1, pageCount, showData)
   })
 }
 
-export function compose(...funcs) {
+export function compose (...funcs) {
   return funcs.reduce((a, b) => (...args) => a(b(...args)));
+}
+
+export function getImg (url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => resolve(img)
+    img.onerror = reject
+    img.src = url
+  })
+}
+
+export function preloadImg (list, limit = 4) {
+  window.requestIdleCallback(async () => {
+    for await (const item of asyncPool(limit, list, getImg)) {
+      console.log(item)
+    }
+  }, { timeout: 4000 })
 }
 
 // renderData(res.data, res.data.length, 0, 200, showData)

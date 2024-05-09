@@ -4,7 +4,8 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     { path: '/', component: () => import('@/views/HomePage.vue') },
-    { path: '/img', component: () => import('@/views/LazyImg.vue') }
+    { path: '/img', component: () => import('@/views/LazyImg.vue') },
+    {path: '/preloadImg', component: () => import('@/views/PreloadImg.vue')}
     //...
   ],
 })

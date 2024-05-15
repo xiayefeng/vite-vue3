@@ -8,7 +8,7 @@ const list = ref([])
 function changeList () {
   list.value = [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }]
 }
-const { data, error } = useFetch({ url: '/api/userInfo', params: { a: 3, b: 4 }, useMemo: 1 })
+const { data, error } = await useFetch({ url: '/api/userInfo', params: { a: 3, b: 4 }, useMemo: 1 })
 if (error.value) {
   console.log(error.value.message)
 } else {

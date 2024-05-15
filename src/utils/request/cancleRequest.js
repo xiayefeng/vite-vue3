@@ -1,5 +1,4 @@
 export default class CancelAxios {
-  cancelInstance = null
   #map = new Map()
   removePendingReq (url, type) {
     const item = this.#map.get(url)
@@ -15,11 +14,5 @@ export default class CancelAxios {
   }
   clear () {
     this.#map.clear()
-  }
-  createCancel () {
-    if (!this.cancelInstance) {
-      this.cancelInstance = new CancelAxios()
-    }
-    return this.cancelInstance
   }
 }

@@ -1,15 +1,10 @@
 import CancelAxios from './cancleRequest.js'
 
 export default class RequestStore extends CancelAxios {
-  storeInstance = null
   #map = new Map()
-  constructor() {
-    super()
-    this.storeInstance = this
-  }
-  getInstance () {
-    return { storeInstance: this.createStore(), cancelInstance: this.createCancel() }
-  }
+  /*   constructor() {
+      super()
+    } */
   hasStore (key) {
     return this.#map.has(key)
   }
@@ -22,11 +17,5 @@ export default class RequestStore extends CancelAxios {
   }
   delStore (key) {
     this.#map.delete(key)
-  }
-  createStore () {
-    if (!this.storeInstance) {
-      this.storeInstance = new RequestStore()
-    }
-    return this.storeInstance
   }
 }

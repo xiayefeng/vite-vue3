@@ -8,17 +8,16 @@ const instance = axios.create({
 })
 
 const toolsInstance = new requestStore()
-const { storeInstance, cancelInstance } = toolsInstance.getInstance()
 instance.interceptors.request.use(
   config => {
     const url = config.url
     if (config.signalRequest) {
       // removePendingReq(url, 'req')
-      cancelInstance.removePendingReq(url, 'req')
+      toolsInstance.removePendingReq(url, 'req')
       // const controller = new AbortController()
       // config.signal = controller.signal
       // reqMap.set(url, controller)
-      cancelInstance.addRequest(url, config)
+      toolsInstance.addRequest(url, config)
     }
     if (config.data instanceof FormData) {
       config.headers['Content-Type'] = 'multipart/form-data'
@@ -45,7 +44,7 @@ instance.interceptors.response.use(
     } */
     if (resp.config.signalRequest) {
       // removePendingReq(url, 'resp')
-      cancelInstance.removePendingReq(url, 'resp')
+      toolsInstance.removePendingReq(url, 'resp')
     }
 
     if (res.code === 0) {
@@ -80,8 +79,8 @@ export default ({ url, method = 'get', params = {}, data = {}, ...rest } = {}) =
     method = method.toLocaleLowerCase()
   }
   if (rest.useMemo && method === 'get') {
-    if (storeInstance.hasStore(url)) {
-      const res = storeInstance.getStore(url)
+    if (toolsInstance.hasStore(url)) {
+      const res = toolsInstance.getStore(url)
       if (isPromise(res)) {
         return res
       } else {
@@ -97,12 +96,12 @@ export default ({ url, method = 'get', params = {}, data = {}, ...rest } = {}) =
     ...rest
   }).then((res) => {
     if (rest.useMemo && method === 'get') {
-      storeInstance.setStore(url, res)
+      toolsInstance.setStore(url, res)
     }
     return res
   }).catch(error => {
     if (rest.useMemo && method === 'get') {
-      storeInstance.delStore(url)
+      toolsInstance.delStore(url)
     }
     // console.log(error)
     if (axios.isCancel(error)) {
@@ -112,8 +111,8 @@ export default ({ url, method = 'get', params = {}, data = {}, ...rest } = {}) =
   })
 
   if (rest.useMemo && method === 'get') {
-    if (!storeInstance.hasStore(url)) {
-      storeInstance.setStore(url, p)
+    if (!toolsInstance.hasStore(url)) {
+      toolsInstance.setStore(url, p)
     }
   }
   return p

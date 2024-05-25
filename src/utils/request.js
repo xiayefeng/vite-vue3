@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import requestStore from '@/utils/request/requestStore.js'
-import { isPromise } from '@/utils'
+import { isPromise, getStoreKey } from '@/utils'
 
 const instance = axios.create({
   timeout: 1000
@@ -69,18 +69,15 @@ instance.interceptors.response.use(
 )
 
 export default ({ url, method = 'get', params = {}, data = {}, ...rest } = {}) => {
-  // console.log(url)
-  // console.log(params)
   if (!url) {
     console.warn('请求地址不能为空')
     return
   }
-  if (/[A-Z]/.test(method)) {
-    method = method.toLocaleLowerCase()
-  }
+  let fullUrl
   if (rest.useMemo && method === 'get') {
-    if (toolsInstance.hasStore(url)) {
-      const res = toolsInstance.getStore(url)
+    fullUrl = getStoreKey(url, params, rest)
+    if (toolsInstance.hasStore(fullUrl)) {
+      const res = toolsInstance.getStore(fullUrl)
       if (isPromise(res)) {
         return res
       } else {
@@ -96,12 +93,12 @@ export default ({ url, method = 'get', params = {}, data = {}, ...rest } = {}) =
     ...rest
   }).then((res) => {
     if (rest.useMemo && method === 'get') {
-      toolsInstance.setStore(url, res)
+      toolsInstance.setStore(fullUrl, res)
     }
     return res
   }).catch(error => {
     if (rest.useMemo && method === 'get') {
-      toolsInstance.delStore(url)
+      toolsInstance.delStore(fullUrl)
     }
     // console.log(error)
     if (axios.isCancel(error)) {
@@ -111,8 +108,8 @@ export default ({ url, method = 'get', params = {}, data = {}, ...rest } = {}) =
   })
 
   if (rest.useMemo && method === 'get') {
-    if (!toolsInstance.hasStore(url)) {
-      toolsInstance.setStore(url, p)
+    if (!toolsInstance.hasStore(fullUrl)) {
+      toolsInstance.setStore(fullUrl, p)
     }
   }
   return p

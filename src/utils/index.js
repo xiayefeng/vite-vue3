@@ -73,4 +73,19 @@ export function preloadImg (list, limit = 4) {
   }, { timeout: 4000 })
 }
 
+export function paramsToUrl (url, params = {}) {
+  const searchParams = new URLSearchParams(params)
+  return `${url}?${searchParams.toString()}`
+}
+
+export function getStoreKey (url, params, rest) {
+  let fullUrl = ''
+  if (rest.ignoreParams) {
+    fullUrl = url
+  } else {
+    fullUrl = paramsToUrl(url, params)
+  }
+  return fullUrl
+}
+
 // renderData(res.data, res.data.length, 0, 200, showData)

@@ -57,19 +57,7 @@ export default defineConfig({
           'lodash': ['lodash'],
         },
       },
-    },
-   /*  terserOptions: {
-      compress: {
-        // warnings: false,
-        drop_console: true, // 打包时删除console
-        drop_debugger: true, // 打包时删除 debugger
-        pure_funcs: ['console.log'],
-      },
-      output: {
-        // 去掉注释内容
-        comments: true,
-      },
-    }, */
+    }
   },
   server: {
     // hmr: { overlay: false }, // 为 false 可以禁用服务器错误遮罩层

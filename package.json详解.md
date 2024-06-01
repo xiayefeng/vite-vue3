@@ -186,7 +186,8 @@ overrides 支持任意深度的嵌套。
 
 >- lint-staged: lint-staged 是用于对 git 的暂存区的文件进行操作的工具，比如可以在代码提交前执行 lint 校验，类型检查，图片优化等操作。
 
-## 2、依赖安装详解
+## 2、依赖版本号
+
 [semver](https://github.com/npm/node-semver#versions)
 ^1.2.3 := >=1.2.3 <2.0.0-0
 ^0.2.3 := >=0.2.3 <0.3.0-0
@@ -203,3 +204,9 @@ overrides 支持任意深度的嵌套。
 >- 登录 npm login
 >- 发布 npm publish
 >- 查看 npm view [<package-spec>]
+
+---
+
+参考资料 [npm doc](https://docs.npmjs.com/)
+
+---

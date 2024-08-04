@@ -27,3 +27,28 @@ function add5 (str) {
 let newaddfun = compose(add5, add4, add3, add2, add1);
 console.log(newaddfun.toString())
 console.log(newaddfun("abc")) // abc12345
+
+const arr = [1, 2, 3, 4, 5];
+
+async function asyncFunction (num) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      try {
+        resolve(num * 2);
+      } catch (err) {
+        reject(err)
+      }
+
+    }, 1000);
+  });
+}
+
+const promises = arr.map(async (num, idx) => {
+  const result = await asyncFunction(num);
+  console.log(idx)
+  return result;
+});
+
+Promise.all(promises).then((results) => {
+  console.log(results); // [2, 4, 6, 8, 10]
+});

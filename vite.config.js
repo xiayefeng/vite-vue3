@@ -7,6 +7,7 @@ import path from 'node:path'
 import viteCompression from 'vite-plugin-compression'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // import importElementPlus from 'vite-plugin-element-plus'
+import ElementPlus from 'unplugin-element-plus/vite'
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -23,6 +24,9 @@ export default defineConfig({
       symbolId: '[dir]-[name]'
     }),
     // importElementPlus(),
+    ElementPlus({
+      // options
+    }),
     visualizer({
       emitFile: false,
       file: "stats.html", //分析图生成的文件名

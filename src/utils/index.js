@@ -88,4 +88,20 @@ export function getStoreKey (url, params, rest) {
   return fullUrl
 }
 
+export function getImgSize(url) {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.onload = () => resolve({
+      width: img.width,
+      height: img.height
+    })
+    img.onerror = () => resolve({
+      width: 0,
+      height: 0
+    })
+    img.src = url
+  })
+}
+
+
 // renderData(res.data, res.data.length, 0, 200, showData)

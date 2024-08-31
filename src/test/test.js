@@ -52,3 +52,21 @@ const promises = arr.map(async (num, idx) => {
 Promise.all(promises).then((results) => {
   console.log(results); // [2, 4, 6, 8, 10]
 });
+
+function getImgSize(url) {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.onload = () => resolve({
+      width: img.width,
+      height: img.height
+    })
+    img.onerror = () => resolve({
+      width: 0,
+      height: 0
+    })
+    img.src = url
+  })
+}
+
+const {width} = await getImgSize('https://via.placeholder.com/200')
+console.log(width)

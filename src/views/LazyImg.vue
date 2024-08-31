@@ -1,10 +1,17 @@
-<script setup >
-import { ref } from "vue";
+<script setup>
+import { ref, onMounted } from "vue";
 import { useInView } from "@/hooks/lazy-img.js";
+import { getImgSize } from '@/utils'
 
 const imgRef = ref(null);
 
 useInView(imgRef);
+
+onMounted(async () => {
+  const { width, height } = await getImgSize('https://picsum.photos/200/183')
+  console.log(width)
+  console.log(height)
+})
 
 </script>
 
